@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular-grid": "^1.12.4",
     "body-parser": "^1.13.3",
     "ejs": "^2.3.3",
     "express": "^4.13.3",

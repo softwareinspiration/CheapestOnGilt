@@ -17,6 +17,13 @@ app.use(express.static(__dirname));
 
 app.get('/', function(req, res){
 
+var giltnames = [];
+var giltdates = [];
+
+var ruelalanames = [];
+var ruelaladates = [];
+
+
   request.get({
     url: 'https://app.cloudscrape.com/api/runs/ebd112a0-9855-417b-ba92-6017c7363926/latest/result',
     headers: {
@@ -42,7 +49,7 @@ app.get('/', function(req, res){
     }
   },
   function(error, response, body) {
-
+    
     function saveCheck(err, data){
       console.log('checking');
       if (err) {
@@ -54,9 +61,6 @@ app.get('/', function(req, res){
 var bod = JSON.parse(body);
 var sales = bod.sales;
 
-var names = [];
-var dates = [];
-var ss = [];
 
       if(sales instanceof Array){
           for(var i=0; i<sales.length;i++){
@@ -67,9 +71,9 @@ var ss = [];
             // var begTime = beg.getHours();
             //
             // dates.push(begDay+" "+begMonth+" "+begYear+" "+ begTime);
-            dates.push(beg.toString());
+            giltdates.push(beg.toString());
             var name = sales[i].name;
-            names.push(name);
+            giltnames.push(name);
             var newSale = new Sale({
                             title: name,
                             date: beg
@@ -78,12 +82,18 @@ var ss = [];
             // });
         }
       }
-      // res.render('index.ejs', {data: sales});
-      res.send({
-        n: names,
-        d: dates,
-        })
+      // res.send({
+      //   n: names,
+      //   d: dates,
+      //   })
   });
+
+res.render('index.ejs', {
+                        giltn: giltnames,
+                        giltd: giltdates,
+
+
+                        });
 })
 
 mongoose.connect(MONGOURI);
