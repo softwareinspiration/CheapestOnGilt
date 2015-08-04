@@ -17,82 +17,19 @@ app.use(express.static(__dirname));
 
 app.get('/', function(req, res){
 
-var giltnames = [];
-var giltdates = [];
-
-var ruelalanames = [];
-var ruelaladates = [];
 
 
-  request.get({
-    url: 'https://app.cloudscrape.com/api/runs/ebd112a0-9855-417b-ba92-6017c7363926/latest/result',
-    headers: {
-      'X-CloudScrape-Access': 'f994895fd66b203b92243f8bc3f70d97',
-      'X-CloudScrape-Account': '365db7d8-9186-4389-8c28-5666bf523010',
-      'Accept': 'application/json',
-      'Host': 'app.cloudscrape.com',
-      'User-Agent': 'YourApp/1.0',
-    }
-  },
-  function(error,response,body){
+var data = {
+            giltn: giltnames,
+            giltd: giltdates,
+            ruelalan: ruelalanames,
+            ruelalad: ruelaladates
+            }
 
-      console.log(body);
-  }
-  )
-
-  var apiKey = "e0f5b85f64d239a5945fede8a95a3ddce8d6e952cef546b371b3b7b3ca213468";
-
-  request.get({
-  url: 'https://api.gilt.com/v1/sales/men/upcoming.json',
-  headers: {
-          apikey: apiKey
-    }
-  },
-  function(error, response, body) {
-    
-    function saveCheck(err, data){
-      console.log('checking');
-      if (err) {
-      } else {
-
-      }
-    }
-
-var bod = JSON.parse(body);
-var sales = bod.sales;
-
-
-      if(sales instanceof Array){
-          for(var i=0; i<sales.length;i++){
-            var beg = new Date(sales[i].begins);
-            // var begDay = beg.getDay();
-            // var begMonth = beg.getMonth();
-            // var begYear = beg.getFullYear();
-            // var begTime = beg.getHours();
-            //
-            // dates.push(begDay+" "+begMonth+" "+begYear+" "+ begTime);
-            giltdates.push(beg.toString());
-            var name = sales[i].name;
-            giltnames.push(name);
-            var newSale = new Sale({
-                            title: name,
-                            date: beg
-                            });
-            // newSale.save(function(error, data){saveCheck(err, data)
-            // });
-        }
-      }
-      // res.send({
-      //   n: names,
-      //   d: dates,
-      //   })
-  });
+console.log(data);
 
 res.render('index.ejs', {
-                        giltn: giltnames,
-                        giltd: giltdates,
-
-
+                        sales: data,
                         });
 })
 
