@@ -17,24 +17,23 @@ app.use(express.static(__dirname));
 
 app.get('/', function(req, res){
 
-  var apiKey = "e0f5b85f64d239a5945fede8a95a3ddce8d6e952cef546b371b3b7b3ca213468";
-
   request.get({
-    url: 'https://app.cloudscrape.com/api/runs/{runId}/latest/result'
+    url: 'https://app.cloudscrape.com/api/runs/ebd112a0-9855-417b-ba92-6017c7363926/latest/result',
     headers: {
-      X-CloudScrape-Access: a84e3ed9bfb1343c0a2c90d94,
-      X-CloudScrape-Account: 365db7d8-9186-4389-8c28-5666bf523010,
-      Accept: application/json,
-      Accept-Encoding: gzip,
-      Host: app.cloudscrape.com,
-      User-Agent: YourApp/1.0
+      'X-CloudScrape-Access': 'f994895fd66b203b92243f8bc3f70d97',
+      'X-CloudScrape-Account': '365db7d8-9186-4389-8c28-5666bf523010',
+      'Accept': 'application/json',
+      'Host': 'app.cloudscrape.com',
+      'User-Agent': 'YourApp/1.0',
     }
   },
   function(error,response,body){
-    console.log(body);
+
+      console.log(body);
   }
   )
 
+  var apiKey = "e0f5b85f64d239a5945fede8a95a3ddce8d6e952cef546b371b3b7b3ca213468";
 
   request.get({
   url: 'https://api.gilt.com/v1/sales/men/upcoming.json',
@@ -45,24 +44,32 @@ app.get('/', function(req, res){
   function(error, response, body) {
 
     function saveCheck(err, data){
-      // console.log('checking');
+      console.log('checking');
       if (err) {
-        // console.log(err);
       } else {
-        // console.log(data);
+
       }
     }
 
 var bod = JSON.parse(body);
 var sales = bod.sales;
 
-console.log('bye');
+var names = [];
+var dates = [];
+var ss = [];
+
       if(sales instanceof Array){
           for(var i=0; i<sales.length;i++){
             var beg = new Date(sales[i].begins);
-            console.log(beg);
+            // var begDay = beg.getDay();
+            // var begMonth = beg.getMonth();
+            // var begYear = beg.getFullYear();
+            // var begTime = beg.getHours();
+            //
+            // dates.push(begDay+" "+begMonth+" "+begYear+" "+ begTime);
+            dates.push(beg.toString());
             var name = sales[i].name;
-            console.log(name);
+            names.push(name);
             var newSale = new Sale({
                             title: name,
                             date: beg
@@ -71,7 +78,11 @@ console.log('bye');
             // });
         }
       }
-      res.render('index.ejs', {data: sales});
+      // res.render('index.ejs', {data: sales});
+      res.send({
+        n: names,
+        d: dates,
+        })
   });
 })
 
