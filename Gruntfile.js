@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     less: {
       build: {
         files: {
-          './dist/css/style.css': './src/css/style.less'
+          './dist/css/style.css': ['./src/css/style.less', './src/css/animate.less']
         }
       }
     },

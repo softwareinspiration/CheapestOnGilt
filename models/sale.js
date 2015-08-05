@@ -8,6 +8,7 @@ var saleSchema = Schema({
   item_picture: {type:String},
   msrp_price: {type: Number},
   sale_price: {type: Number},
+  percent_discount: {type: Number},
   inventory_status: {type: String}
 });
 

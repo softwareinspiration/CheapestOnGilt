@@ -1,12 +1,14 @@
 angular.module('MainCtrl', [])
 
-.controller('mainController', ['$scope', function($scope, $http) {
+.controller('mainController', ['$scope', '$http', function($scope, $http) {
 
-  console.log('okay');
-  $scope.message = 'Look at me go 222!';
+    $scope.sortType     = 'sale_price'; // set the default sort type
+    $scope.sortReverse  = false;  // set the default sort order
+    $scope.searchFish   = '';     // set the default search/filter term
 
-    $http.get('localhost:1337/').success(function(data) {
-      $scope.message = data;
+    $http.get('/giltdata').success(function(data) {
+      console.log(data.sales);
+      $scope.data = data.sales;
     });
 
 }]);

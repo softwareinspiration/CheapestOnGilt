@@ -17,20 +17,23 @@ app.use(express.static(__dirname));
 
 app.get('/', function(req, res){
 
+  res.render('index.ejs', {});
 
+})
 
-var data = {
-            giltn: giltnames,
-            giltd: giltdates,
-            ruelalan: ruelalanames,
-            ruelalad: ruelaladates
+app.get('/giltdata', function(req, res){
+
+console.log('request');
+
+  Sale.find({}, function (err, salesArray) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json({
+                sales: salesArray
+              });
             }
-
-console.log(data);
-
-res.render('index.ejs', {
-                        sales: data,
-                        });
+  });
 })
 
 mongoose.connect(MONGOURI);
