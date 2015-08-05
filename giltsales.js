@@ -63,16 +63,28 @@ request.get({
 
               var pd = (item.skus[0].msrp_price - item.skus[0].sale_price)/item.skus[0].msrp_price*100;
               console.log(pd);
+              var is = null
+              if (item.skus[0].inventory_status === 'for sale') {
+                is = true;
+              } else {
+                is = false
+              };
+              console.log(is);
 
               var newSale = new Sale({
+                start_date: bod.sales[0].begins,
+                end_date: bod.sales[0].ends,
                 sale_name: bod.sales[0].name,
+                sale_store: bod.sales[0].store,
                 item_name: item.name,
+                item_brand: item.brand,
                 item_link: item.url,
                 item_picture: item.image_urls['91x121'][0].url,
                 msrp_price: item.skus[0].msrp_price,
                 sale_price: item.skus[0].sale_price,
                 percent_discount: pd,
-                inventory_status: item.skus[0].inventory_status
+                inventory_status: is,
+                categories: item.categories
                               });
               newSale.save(function(error, data){
               if (err) {console.log('error')}
@@ -81,11 +93,6 @@ request.get({
       }
   }
 
-
-        // res.send({
-        //   n: names,
-        //   d: dates,
-        //   })
     );
 
 

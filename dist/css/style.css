@@ -1,7 +1,7 @@
 body {
   background: #efefef;
 }
-.container .mix {
+.container .item {
   text-align: center;
   margin: 0 0 2%;
   padding: 1%;
@@ -13,4 +13,28 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   max-height: 900px;
+}
+div {
+  opacity: 1;
+}
+div.ng-enter {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+}
+div.ng-enter-active {
+  opacity: 1;
+}
+div.loading {
+  display: none;
+  background: blue;
+  transition: 1s all;
+}
+div.ng-move {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+}
+div.ng-move-active {
+  opacity: 1;
 }
