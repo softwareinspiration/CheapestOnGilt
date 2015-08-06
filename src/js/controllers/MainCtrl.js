@@ -49,7 +49,7 @@ angular.module('MainCtrl', ['ngAnimate'])
     }
     return store;
   };
-  
+
       // $('#Container').addClass('loading');
       // $timeout(function () {
       //   console.log("I'm now happening...");

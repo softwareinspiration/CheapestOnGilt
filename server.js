@@ -31,8 +31,8 @@ console.log('request');
     } else {
       res.json({
                 sales: salesArray
-              });
-            }
+        });
+      }
   });
 })
 

@@ -48,11 +48,12 @@
 </button>
 
 <div id='Container' class='container'>
+
 <div ng-repeat="item in data | orderBy:sortType:sortReverse | filter:storeFilter | filter:searchItems
-| startFrom:currentPage*pageSize | limitTo:pageSize" class='item'>
+| startFrom:currentPage*pageSize | limitTo:pageSize" class='item' style= "animation-delay: {{$index/10}}s;">
 
 <a href = {{item.item_link}}>
-<img src = {{item.item_picture}}>
+<img src = {{item.item_picture_medium}} class = 'image'>
 </a>
 <div class = 'title'>{{item.item_name}}</div>
 <div class = 'brand'>{{item.item_brand}}</div>
