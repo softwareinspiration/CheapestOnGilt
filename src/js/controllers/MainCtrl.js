@@ -11,6 +11,12 @@ angular.module('MainCtrl', ['ngAnimate'])
       $scope.data = data.sales;
     });
 
+    $scope.currentPage = 0;
+    $scope.pageSize = 10;
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.data.length/$scope.pageSize);
+    };
+
     $scope.setSort = function ($event, sortType) {
       console.log($event);
       if ($scope.sortType === sortType) {
@@ -26,23 +32,24 @@ angular.module('MainCtrl', ['ngAnimate'])
           return dateOut;
     };
 
-    $scope.includedStores = [];
+    $scope.storeIncludes = [];
     $scope.includeStore = function(store) {
-      var i = $.inArray(store, $scope.includedStores);
+      var i = $.inArray(store, $scope.storeIncludes);
       if (i > -1) {
-        $scope.includedStores.splice(i,1);
+        $scope.storeIncludes.splice(i,1);
       } else {
-        $scope.includedStores.push(store);
+        $scope.storeIncludes.push(store);
       }
     };
 
     $scope.storeFilter = function(store) {
-    if ($scope.includedStores.length > 0) {
-        if ($.inArray(data.sale_store, $scope.includedStores) < 0) {
-            return; }
+    if ($scope.storeIncludes.length > 0) {
+        if ($.inArray(store.sale_store, $scope.storeIncludes) < 0)
+            return;
     }
     return store;
   };
+  
       // $('#Container').addClass('loading');
       // $timeout(function () {
       //   console.log("I'm now happening...");
