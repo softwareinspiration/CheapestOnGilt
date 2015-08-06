@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 var saleSchema = Schema({
   start_date: {type: Date},
   end_date: {type: Date},
+  days_old: {type: Number},
   sale_name: {type: String},
   sale_store: {type: String},
   item_brand: {type: String},

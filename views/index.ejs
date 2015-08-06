@@ -22,37 +22,46 @@
 <input type="text" placeholder="Search Items" ng-model="searchItems">
 </form>
 
-<a href="#" ng-click="setSort($event, 'msrp_price')">MSRP
-<span ng-show="sortType == 'msrp_price' && !sortReverse" class="fa fa-caret-down"></span>
-<span ng-show="sortType == 'msrp_price' && sortReverse" class="fa fa-caret-up"></span>
-</a>
-
-
-<a href="#" ng-click="setSort($event, 'sale_price')">SALE
-<span ng-show="sortType == 'sale_price' && !sortReverse" class="fa fa-caret-down"></span>
-<span ng-show="sortType == 'sale_price' && sortReverse" class="fa fa-caret-up"></span>
-</a>
-
-<a href="#" ng-click="setSort($event, 'percent_discount')">%
-<span ng-show="sortType == 'percent_discount' && !sortReverse" class="fa fa-caret-down"></span>
-<span ng-show="sortType == 'percent_discount' && sortReverse" class="fa fa-caret-up"></span>
-</a>
-
-<div> M
-  
+<div>Store</div>
+<input type="checkbox" ng-click="includeStore('women')"> Women </input>
+<input type="checkbox" ng-click="includeStore('men')"> Men </input>
+<input type="checkbox" ng-click="includeStore('kids')"> Baby & Kids </input>
+<input type="checkbox" ng-click="includeStore('home')"> Home </input>
 </div>
 
+<div>{{includedStores}}</div>
+
+<div>Sort</div>
+<button href="#" ng-click="setSort($event, 'msrp_price')">MSRP
+<span ng-show="sortType == 'msrp_price' && !sortReverse" class="fa fa-caret-down"></span>
+<span ng-show="sortType == 'msrp_price' && sortReverse" class="fa fa-caret-up"></span>
+</button>
+
+<button href="#" ng-click="setSort($event, 'sale_price')">SALE
+<span ng-show="sortType == 'sale_price' && !sortReverse" class="fa fa-caret-down"></span>
+<span ng-show="sortType == 'sale_price' && sortReverse" class="fa fa-caret-up"></span>
+</button>
+
+<button ng-click="setSort($event, 'percent_discount')">%
+<span ng-show="sortType == 'percent_discount' && !sortReverse" class="fa fa-caret-down"></span>
+<span ng-show="sortType == 'percent_discount' && sortReverse" class="fa fa-caret-up"></span>
+</button>
+
 <div id='Container' class='container'>
-<div ng-repeat="item in data | orderBy:sortType:sortReverse | filter:searchItems" class='item'>
+<div ng-repeat="item in data | orderBy:sortType:sortReverse | filter:storeFilter | filter:searchItems" class='item'>
 
 <a href = {{item.item_link}}>
 <img src = {{item.item_picture}}>
 </a>
-<div>{{item.item_brand}}, {{item.item_name}}</div>
+<div class = 'title'>{{item.item_name}}</div>
+<div class = 'brand'>{{item.item_brand}}</div>
+<!-- <div>Begin Date: {{item.start_date |  date:"MM/dd/yyyy"}}</div> -->
+<div>Freshness: {{(item.days_old)}}</div>
+
 <div>
-    {{item.msrp_price | currency : symbol : 0}},
-    {{item.sale_price | currency : symbol : 0}},
-    {{item.percent_discount | number : 2}}%
+    <span style="text-decoration: line-through;">{{item.msrp_price | currency : symbol : 0}}</span>,
+    <b>{{item.sale_price | currency : symbol : 0}}</b>,
+    <span style="color: orange;">-{{item.percent_discount | number : 0}}%</span>
 </div>
 </div>
 </div>

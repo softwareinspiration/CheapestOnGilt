@@ -61,19 +61,25 @@ request.get({
                 }
               }
 
-              var pd = (item.skus[0].msrp_price - item.skus[0].sale_price)/item.skus[0].msrp_price*100;
-              console.log(pd);
-              var is = null
+              var percentDiscount = (item.skus[0].msrp_price - item.skus[0].sale_price)/item.skus[0].msrp_price*100;
+              console.log(percentDiscount);
+
+              var inventoryStatus = null
               if (item.skus[0].inventory_status === 'for sale') {
-                is = true;
+                inventoryStatus = true;
               } else {
-                is = false
+                inventoryStatus = false
               };
-              console.log(is);
+              console.log(inventoryStatus);
+
+              var startDate = new Date(bod.sales[0].begins)
+              var endDate = new Date(bod.sales[0].ends)
+              var daysOld = (startDate.valueOf() - endDate.valueOf())/(24*60*60*1000);
 
               var newSale = new Sale({
-                start_date: bod.sales[0].begins,
-                end_date: bod.sales[0].ends,
+                start_date: startDate,
+                end_date: endDate,
+                days_old: daysOld,
                 sale_name: bod.sales[0].name,
                 sale_store: bod.sales[0].store,
                 item_name: item.name,
@@ -82,10 +88,11 @@ request.get({
                 item_picture: item.image_urls['91x121'][0].url,
                 msrp_price: item.skus[0].msrp_price,
                 sale_price: item.skus[0].sale_price,
-                percent_discount: pd,
-                inventory_status: is,
+                percent_discount: percentDiscount,
+                inventory_status: inventoryStatus,
                 categories: item.categories
-                              });
+              });
+
               newSale.save(function(error, data){
               if (err) {console.log('error')}
               });
