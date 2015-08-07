@@ -1,6 +1,6 @@
-angular.module('MainCtrl', ['ngAnimate'])
+var main = angular.module('MainCtrl', ['ngAnimate', 'ngMaterial']);
 
-.controller('mainController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+main.controller('mainController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     $scope.sortType     = 'sale_price'; // set the default sort type
     $scope.sortReverse  = true;  // set the default sort order

@@ -160,10 +160,12 @@ request.get({
                 categories: item.categories
               });
 
+              if (newSale.inventory_status === true) {
               newSale.save(function(error, data){
                 console.log('saving');
               if (err) {console.log('error')}
               });
+            }
           })
         }
 

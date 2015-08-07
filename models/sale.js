@@ -17,7 +17,7 @@ var saleSchema = Schema({
   msrp_price: {type: Number},
   sale_price: {type: Number},
   percent_discount: {type: Number},
-  inventory_status: {type: String},
+  inventory_status: {type: Boolean},
   units_for_sale: {type: Number},
   units_sold_past_day: {type: Number},
   categories: {type: Array}
