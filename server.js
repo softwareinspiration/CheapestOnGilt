@@ -7,7 +7,7 @@ var express =        require('express'),
     mongoose =       require('mongoose'),
     session =        require('express-session'),
     request =        require('request'),
-    Sale =           require('../flashsalecalendar/models/sale.js');
+    Sale =           require('./models/sale.js');
 
 var PORT = process.env.PORT || 1337;
 var MONGOURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/flashsalecalendar';
