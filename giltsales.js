@@ -76,25 +76,20 @@ request.get({
             console.log('request made');
             var item = JSON.parse(body);
             console.log(item);
-            // console.log(item.name);
-            // console.log(item.url);
-            // console.log(item.image_urls['91x121'][0].url);
-            //
-            // console.log(item.skus[0].msrp_price);
-            // console.log(item.skus[0].sale_price);
-            // console.log(item.skus[0].inventory_status);
-
-              // for (k=0; k<item.skus.length;k+=1){
-              //   console.log(item.skus[k].msrp_price);
-              //   console.log(item.skus[k].sale_price);
-              //   console.log(item.skus[k].inventory_status);
-              // }
 
               function saveCheck(err, data){
                 console.log('checking');
                 if (err) {
                 } else {
                 }
+                }
+
+              if (item.name.length > 33) {
+                item.name = item.name.slice(0,29)+'...'
+              }
+
+              if (item.name.length < 33) {
+                item.name = item.name+'               '
               }
 
               var percentDiscount = (item.skus[0].msrp_price - item.skus[0].sale_price)/item.skus[0].msrp_price*100;
@@ -169,7 +164,7 @@ request.get({
           })
         }
 
-      }, 2000 * i);
+      }, 3000 * i);
         }(i));
     }
     }
