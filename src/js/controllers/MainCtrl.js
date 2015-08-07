@@ -2,8 +2,8 @@ angular.module('MainCtrl', ['ngAnimate'])
 
 .controller('mainController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
-    $scope.sortType     = 'name'; // set the default sort type
-    $scope.sortReverse  = false;  // set the default sort order
+    $scope.sortType     = 'sale_price'; // set the default sort type
+    $scope.sortReverse  = true;  // set the default sort order
     $scope.searchItems   = '';     // set the default search/filter term
 
     $http.get('/giltdata').success(function(data) {
@@ -12,7 +12,8 @@ angular.module('MainCtrl', ['ngAnimate'])
     });
 
     $scope.currentPage = 0;
-    $scope.pageSize = 10;
+    $scope.pageSize = 20;
+
     $scope.numberOfPages=function(){
         return Math.ceil($scope.data.length/$scope.pageSize);
     };
@@ -21,7 +22,11 @@ angular.module('MainCtrl', ['ngAnimate'])
       console.log($event);
       if ($scope.sortType === sortType) {
         $scope.sortReverse = !$scope.sortReverse;
-      } else {
+      }
+      else if (sortType === 'percent_discount') {
+        $scope.sortType = sortType;
+        $scope.sortReverse = true; }
+      else {
         $scope.sortType = sortType;
         $scope.sortReverse = false;
       }

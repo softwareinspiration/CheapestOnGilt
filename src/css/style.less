@@ -1,31 +1,44 @@
 @primaryColor : #EFEFEF;
+@titleFont: 'Alegreya', sans-serif;
+@headerFont: 'Roboto Condensed', sans-serif;
+@textFont: 'Roboto', serif;
+
 
 body { background:@primaryColor;}
 
+#title {
+  font-family:@titleFont;
+  font-weight: 700;
+  font-size: 46px
+}
+
 .image {
+  box-sizing: border-box;
   width: 100%;
   height: 80%;
-
+  margin: 0 0 2%;
 }
 
-.container .item{
+.item{
+  font-family:@headerFont;
   text-align: center;
   margin: 0 0 2%;
-  height: 20%;
-  width: 20%;
-  // -webkit-backface-visibility: hidden;
-  // -webkit-transform-origin: 50% 0;
-}
-
-.brand {
-  font-size: 12px;
+  height: 10%;
+  width: 10%;
 }
 
 .title{
   word-wrap: break-word;
+  width:100%;
+  overflow:hidden;
 }
 
-.container{
+.brand {
+  font-family:@textFont;
+  font-size: 12px;
+}
+
+#container{
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;

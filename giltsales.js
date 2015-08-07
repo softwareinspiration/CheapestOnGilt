@@ -30,16 +30,52 @@ var bod = JSON.parse(body);
 // console.log(bod.sales[0].name)
 // console.log(bod.sales[0].products.length);
 
-for (j=0;j<bod.sales[0].products.length; j+=1){
+// console.log(bod.sales.length);
+
+var salesLength = bod.sales.length;
+
+
+// for (var i=0;i<salesLength;i+=1) {
+//
+//   if (!bod.sales[i].products) {
+//     console.log('I found a sale with no products');
+//     i+=1;
+//   }
+//
+//   for (var j=0;j<bod.sales[i].products.length; j+=1){
+//
+//     console.log(i , j)
+//     console.log(bod.sales[i].products[j]);
+//
+//   }
+// }
+
+for (var i=1;i<salesLength;i+=1) {
+
+(function(i){
+setTimeout(function(){
+
+console.log(i);
+while (!bod.sales[i].products) {
+console.log('I found a sale with no products');
+i+=1;
+}
+
+for (var j=0;j<bod.sales[i].products.length; j+=1){
+
+console.log(bod.sales[i].products[j]);
 
 request.get({
-  url: bod.sales[0].products[j],
+  url: bod.sales[i].products[j],
   headers: {
           apikey: apiKey
             }
           },
           function(error, response, body) {
+
+            console.log('request made');
             var item = JSON.parse(body);
+            console.log(item);
             // console.log(item.name);
             // console.log(item.url);
             // console.log(item.image_urls['91x121'][0].url);
@@ -72,32 +108,33 @@ request.get({
               };
               // console.log(inventoryStatus);
 
-              var startDate = new Date(bod.sales[0].begins)
-              var endDate = new Date(bod.sales[0].ends)
-              var daysOld = (startDate.valueOf() - endDate.valueOf())/(24*60*60*1000);
+              var startDate = new Date(bod.sales[i].begins)
+              var endDate = new Date(bod.sales[i].ends)
+              var daysOld = (endDate.valueOf() - startDate.valueOf())/(24*60*60*1000);
 
               var a = null;
               var oldUnitsforSale = null;
               var unitsSoldPastDay = null;
 
-              Sale.find({ "item_sku" : item.skus[0].id, "date_added" :{ $lte : new Date()}}, function (err, sale) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  a = sale[0];
-                  console.log(a);
-                  if (a.units_for_sale === 'undefined'){
-                  oldUnitsforSale = 0;
-                }
-                else {
-                  oldUnitsforSale = a.units_for_sale;
-                console.log(oldUnitsforSale);
-                }
-                  // console.log(oldUnitsforSale);
-                  unitsSoldPastDay = (item.skus[0].units_for_sale) - oldUnitsforSale;
-                  console.log(unitsSoldPastDay);
-                  }
-              });
+              // Sale.find({ "item_sku" : item.skus[0].id, "date_added" :{ $lte : new Date()}}, function (err, sale) {
+              //   if (err) {
+              //     console.log(err);
+              //   } else {
+              //     a = sale[0];
+              //     console.log(a);
+              //     if (!a.units_for_sale){
+              //     oldUnitsforSale = 0;
+              //   }
+              //   else {
+              //     oldUnitsforSale = a.units_for_sale;
+              //
+              //   console.log(oldUnitsforSale);
+              //   }
+              //     // console.log(oldUnitsforSale);
+              //     unitsSoldPastDay = (item.skus[0].units_for_sale) - oldUnitsforSale;
+              //     console.log(unitsSoldPastDay);
+              //     }
+              // });
 
 
 
@@ -106,8 +143,8 @@ request.get({
                 start_date: startDate,
                 end_date: endDate,
                 days_old: daysOld,
-                sale_name: bod.sales[0].name,
-                sale_store: bod.sales[0].store,
+                sale_name: bod.sales[i].name,
+                sale_store: bod.sales[i].store,
                 item_name: item.name,
                 item_sku: item.skus[0].id,
                 item_brand: item.brand,
@@ -119,15 +156,20 @@ request.get({
                 percent_discount: percentDiscount,
                 inventory_status: inventoryStatus,
                 units_for_sale: item.skus[0].units_for_sale,
-                units_sold_past_day: unitsSoldPastDay,
+                // units_sold_past_day: unitsSoldPastDay,
                 categories: item.categories
               });
 
               newSale.save(function(error, data){
+                console.log('saving');
               if (err) {console.log('error')}
               });
           })
         }
+
+      }, 2000 * i);
+        }(i));
+    }
     }
 );
 

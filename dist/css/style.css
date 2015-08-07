@@ -1,23 +1,34 @@
 body {
   background: #efefef;
 }
+#title {
+  font-family: 'Alegreya', sans-serif;
+  font-weight: 700;
+  font-size: 46px;
+}
 .image {
+  box-sizing: border-box;
   width: 100%;
   height: 80%;
+  margin: 0 0 2%;
 }
-.container .item {
+.item {
+  font-family: 'Roboto Condensed', sans-serif;
   text-align: center;
   margin: 0 0 2%;
-  height: 20%;
-  width: 20%;
-}
-.brand {
-  font-size: 12px;
+  height: 10%;
+  width: 10%;
 }
 .title {
   word-wrap: break-word;
+  width: 100%;
+  overflow: hidden;
 }
-.container {
+.brand {
+  font-family: 'Roboto', serif;
+  font-size: 12px;
+}
+#container {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
