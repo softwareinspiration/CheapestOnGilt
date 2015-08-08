@@ -1,13 +1,10 @@
 var main = angular.module('MainCtrl', ['ngAnimate', 'ngMaterial']);
 
-
-
-
 main.controller('mainController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     $scope.sortType     = 'sale_price'; // set the default sort type
     $scope.sortReverse  = true;  // set the default sort order
-    $scope.searchItems   = '';     // set the default search/filter term
+    $scope.searchItems  = '';     // set the default search/filter term
 
     $http.get('/giltdata').success(function(data) {
       console.log(data.sales);

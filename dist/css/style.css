@@ -34,6 +34,15 @@ body {
   font-family: 'Roboto', serif;
   font-size: 13px;
 }
+#checkboxes md-checkbox {
+  float: left;
+}
+#buttons md-button {
+  float: left;
+}
+#sliders md-slider {
+  width: 50%;
+}
 #container {
   display: -webkit-flex;
   display: flex;

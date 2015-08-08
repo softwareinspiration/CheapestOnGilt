@@ -19,11 +19,13 @@
 <input type="text" placeholder="Search Items" ng-model="searchItems">
 </form>
 
-<div>Store</div>
+<div id='checkboxes'>
 <md-checkbox ng-click="includeStore('women')" class="md-primary"> Women  </md-checkbox>
-<input type="checkbox" ng-click="includeStore('men')"> Men </input>
-<input type="checkbox" ng-click="includeStore('kids')"> Baby & Kids </input>
-<input type="checkbox" ng-click="includeStore('home')"> Home </input>
+<md-checkbox ng-click="includeStore('men')" class="md-primary"> Men </md-checkbox>
+<md-checkbox ng-click="includeStore('kids')" class="md-primary"> Baby & Kids </md-checkbox>
+<md-checkbox ng-click="includeStore('home')" class="md-primary"> Home </md-checkbox>
+</div>
+
 </div>
 
 <!-- <div ng-repeat="item in data">
@@ -31,29 +33,30 @@
 <span>{{item.categories}}</span>
 </div>
 </div> -->
+<!-- <div>{{storeIncludes}}</div> -->
 
-<div>{{storeIncludes}}</div>
-
-<div>
-<input type="range" min="10" max="50" step="10" ng-model="pageSize"/>
-{{pageSize}}
-</div>
-
-<div>Sort</div>
-<button href="#" ng-click="setSort($event, 'msrp_price')">MSRP
+<div id='buttons'>
+<md-button class="md-raised md-primary md-hue-2" href="#" ng-click="setSort($event, 'msrp_price')">MSRP
 <span ng-show="sortType == 'msrp_price' && !sortReverse" class="fa fa-caret-down"></span>
 <span ng-show="sortType == 'msrp_price' && sortReverse" class="fa fa-caret-up"></span>
-</button>
+</md-button>
 
-<button href="#" ng-click="setSort($event, 'sale_price')">SALE
+<md-button class="md-raised md-primary md-hue-2" href="#" ng-click="setSort($event, 'sale_price')">SALE
 <span ng-show="sortType == 'sale_price' && !sortReverse" class="fa fa-caret-down"></span>
 <span ng-show="sortType == 'sale_price' && sortReverse" class="fa fa-caret-up"></span>
-</button>
+</md-button>
 
-<button ng-click="setSort($event, 'percent_discount')">%
+<md-button class="md-raised md-primary md-hue-2" href="#" ng-click="setSort($event, 'percent_discount')">%
 <span ng-show="sortType == 'percent_discount' && !sortReverse" class="fa fa-caret-down"></span>
 <span ng-show="sortType == 'percent_discount' && sortReverse" class="fa fa-caret-up"></span>
-</button>
+</md-button>
+</div>
+
+
+<div id='sliders'>
+<md-slider flex class="md-primary" md-discrete min="10" max="50" step="10" ng-model="pageSize" aria-label="rating"></md-slider>
+{{pageSize}}
+</div>
 
 </div>
 
