@@ -47,13 +47,6 @@
 </div>
 </div>
 
-<!-- <div ng-repeat="item in data">
-<div>
-<span>{{item.categories}}</span>
-</div>
-</div> -->
-<!-- <div>{{storeIncludes}}</div> -->
-
   <div id='buttons'>
   <md-button class="md-raised md-primary md-hue-2" href="#" ng-click="setSort($event, 'msrp_price')">MSRP
     <span ng-show="sortType == 'msrp_price' && !sortReverse" class="fa fa-caret-down"></span>
@@ -98,7 +91,6 @@
 </a>
 <div class = 'brand'>{{item.item_brand}}</div>
 <div class = 'title'>{{item.item_name}}</div>
-<!-- <div>Freshness: {{(item.days_old)}}</div> -->
 
 <div class = 'pricing'>
     <span style="text-decoration: line-through;">{{item.msrp_price | currency : symbol : 0}}</span>,

@@ -10,7 +10,7 @@ main.filter('startFrom', function() {
 main.controller('mainController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     $scope.sortType     = 'sale_price'; // set the default sort type
-    $scope.sortReverse  = true;  // set the default sort order
+    $scope.sortReverse  = false;  // set the default sort order
 
     $http.get('/giltdata').success(function(data) {
       console.log(data.sales);
