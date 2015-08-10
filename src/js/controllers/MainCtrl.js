@@ -1,10 +1,16 @@
 var main = angular.module('MainCtrl', ['ngAnimate', 'ngMaterial']);
 
+main.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    };
+});
+
 main.controller('mainController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 
     $scope.sortType     = 'sale_price'; // set the default sort type
     $scope.sortReverse  = true;  // set the default sort order
-    $scope.searchItems  = '';     // set the default search/filter term
 
     $http.get('/giltdata').success(function(data) {
       console.log(data.sales);
@@ -13,6 +19,10 @@ main.controller('mainController', ['$scope', '$http', '$timeout', function($scop
 
     $scope.currentPage = 0;
     $scope.pageSize = 20;
+    $scope.daysOld = 5;
+    $scope.daysOldFilter = function (item) {
+    return item.days_old <= $scope.daysOld;
+};
 
     $scope.numberOfPages=function(){
         return Math.ceil($scope.data.length/$scope.pageSize);

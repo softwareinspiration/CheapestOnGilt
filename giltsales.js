@@ -24,31 +24,9 @@ var MONGOURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/flashsalec
 
 var bod = JSON.parse(body);
 
-// console.log('number of sales');
-// console.log(bod.sales.length);
-//
-// console.log(bod.sales[0].name)
-// console.log(bod.sales[0].products.length);
-
-// console.log(bod.sales.length);
-
 var salesLength = bod.sales.length;
 
-
-// for (var i=0;i<salesLength;i+=1) {
-//
-//   if (!bod.sales[i].products) {
-//     console.log('I found a sale with no products');
-//     i+=1;
-//   }
-//
-//   for (var j=0;j<bod.sales[i].products.length; j+=1){
-//
-//     console.log(i , j)
-//     console.log(bod.sales[i].products[j]);
-//
-//   }
-// }
+console.log(bod);
 
 for (var i=1;i<salesLength;i+=1) {
 
@@ -89,7 +67,7 @@ request.get({
               }
 
               if (item.name.length < 33) {
-                item.name = item.name+'               '
+                item.name = item.name
               }
 
               var percentDiscount = (item.skus[0].msrp_price - item.skus[0].sale_price)/item.skus[0].msrp_price*100;
@@ -164,10 +142,12 @@ request.get({
           })
         }
 
-      }, 3000 * i);
+      }, 4000 * i);
         }(i));
     }
-    }
+  }, function() {
+    db.close();
+  }
 );
 
     mongoose.connect(MONGOURI);

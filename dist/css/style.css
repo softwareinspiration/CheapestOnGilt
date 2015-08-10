@@ -5,6 +5,13 @@ body {
   font-family: 'Alegreya', sans-serif;
   font-weight: 700;
   font-size: 46px;
+  color: orange;
+}
+#options {
+  width: 50%;
+}
+search:nth-child(1) {
+  width: 50%;
 }
 .item {
   height: 10%;
@@ -37,10 +44,10 @@ body {
 #checkboxes md-checkbox {
   float: left;
 }
-#buttons md-button {
-  float: left;
+#buttons {
+  width: 60%;
 }
-#sliders md-slider {
+#sliders {
   width: 50%;
 }
 #container {
