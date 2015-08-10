@@ -1,6 +1,6 @@
 var mongoose =       require('mongoose'),
     request =        require('request'),
-    Sale =           require('../flashsalecalendar/models/sale.js');
+    Sale =           require('./models/sale.js');
 
 var MONGOURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/flashsalecalendar';
 
@@ -142,7 +142,7 @@ request.get({
           })
         }
 
-      }, 4000 * i);
+      }, 5000 * i);
         }(i));
     }
   }, function() {
