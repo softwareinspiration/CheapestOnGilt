@@ -52,6 +52,10 @@ for (var i=1;i<salesLength;i+=1) {
 
         counter += 1;
         console.log(counter);
+        if (counter === totalsalesnum ) {
+          console.log('closing');
+          db.db.close();
+        }
         console.log(bod.sales[i].products[j]);
 
           request.get({
@@ -88,11 +92,11 @@ for (var i=1;i<salesLength;i+=1) {
               };
             // console.log(inventoryStatus);
 
+              var today = new Date;
               var startDate = new Date(bod.sales[i].begins)
               var endDate = new Date(bod.sales[i].ends)
-              var daysOld = (endDate.valueOf() - startDate.valueOf())/(24*60*60*1000);
-
-              var a = null;
+              var daysOld = Math.round(today.valueOf()/(24*60*60*1000) - Math.round(startDate.valueOf())/(24*60*60*1000));
+              console.log(daysOld);
               var oldUnitsforSale = null;
               var unitsSoldPastDay = null;
 
@@ -144,11 +148,6 @@ for (var i=1;i<salesLength;i+=1) {
                 if (err) {console.log('error')}
                 });
               }
-              // if (counter === 200 ) {
-              //   console.log('closing');
-              //   db.close();
-              //   break;
-              // }
             })
           }
         }, 5000 * i);
@@ -168,5 +167,6 @@ db.on('error', function () {
 
 db.once('open', function() {
   console.log('db up');
-// db.flashsalecalendar.drop();
+  db.db.dropDatabase();
+  console.log('dropped');
 });
