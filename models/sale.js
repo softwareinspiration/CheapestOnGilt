@@ -13,7 +13,6 @@ var saleSchema = Schema({
   item_sku: {type: Number},
   item_link: {type: String},
   item_picture: {type:String},
-  item_picture_medium: {type:String},
   msrp_price: {type: Number},
   sale_price: {type: Number},
   percent_discount: {type: Number},
