@@ -68,7 +68,7 @@
     <div id='sliders' flex="10" layout layout-align="center center">
       <span class="md-body-1">Days Old:</span>
     <md-slider flex class="md-primary" md-discrete min="0" max="5" step="1" ng-model="daysOld" aria-label="rating"></md-slider>
-  {{daysOld}}
+  <div id = 'slidervalue'>{{daysOld}} </div>
   </div>
 
   <md-button class="md-raised md-primary md-hue-2" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">

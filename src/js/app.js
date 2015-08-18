@@ -1,1 +1,1 @@
-var app = angular.module('giltApp', ['MainCtrl', 'TestService']);
+var app = angular.module('giltApp', ['MainCtrl']);

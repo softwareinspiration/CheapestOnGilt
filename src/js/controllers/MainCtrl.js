@@ -19,7 +19,7 @@ main.controller('mainController', ['$scope', '$http', '$timeout', function($scop
 
     $scope.currentPage = 0;
     $scope.pageSize = 20;
-    $scope.daysOld = 5;
+    $scope.daysOld = 3;
     $scope.daysOldFilter = function (item) {
     return item.days_old <= $scope.daysOld;
 };
