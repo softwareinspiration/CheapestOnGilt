@@ -1,7 +1,8 @@
-##Initial Layout:
-https://wireframe.cc/Uld2nl also stored in _____
+##Demo:
+https://cheapestongilt.herokuapp.com/
 
-Cheapest on Gilt
+##Initial Layout:
+https://wireframe.cc/Uld2nl
 
 ##About:
 Cheapest on Gilt is a different way to browse the sales on www.gilt.com. Cheapest on gilt provides a few key benefits in browsing the sale on gilt.

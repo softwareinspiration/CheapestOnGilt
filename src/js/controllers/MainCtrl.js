@@ -1,4 +1,5 @@
-var main = angular.module('MainCtrl', ['ngAnimate', 'ngMaterial']);
+var main = angular.module('MainCtrl', ['ngAnimate', 'ngMaterial', 'ui.bootstrap']);
+
 
 main.filter('startFrom', function() {
     return function(input, start) {
@@ -11,15 +12,23 @@ main.controller('mainController', ['$scope', '$http', '$timeout', function($scop
 
     $scope.sortType     = 'sale_price'; // set the default sort type
     $scope.sortReverse  = false;  // set the default sort order
+    $scope.hideLoading  = false; //set the loading bar to show until items are loaded
 
     $http.get('/giltdata').success(function(data) {
       console.log(data.sales);
       $scope.data = data.sales;
+      $scope.hideLoading  = true;
     });
 
     $scope.currentPage = 0;
     $scope.pageSize = 20;
     $scope.daysOld = 3;
+
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+    $scope.hideLoading  = true;
+});
+
+
     $scope.daysOldFilter = function (item) {
     return item.days_old <= $scope.daysOld;
 };
