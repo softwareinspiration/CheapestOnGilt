@@ -15,29 +15,7 @@
 
 <div id='title'>Cheapest on Gilt</div>
 <div id='options'>
-<div id='search'>
-        <md-autocomplete
-          ctrl.simulateQuery=""
-          ng-disabled="ctrl.isDisabled"
-          md-no-cache="ctrl.noCache"
-          md-selected-item="ctrl.selectedItem"
-          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-          md-search-text="ctrl.searchText"
-          md-selected-item-change="ctrl.selectedItemChange(item)"
-          md-items="item in ctrl.querySearch(ctrl.searchText)"
-          md-item-text="item.display"
-          md-min-length="0"
-          placeholder="Search by category, brand or item."
-          ng-init="ctrl.searchText=''">
-          <span md-highlight-text="searchText">{{item.display}}</span>
-        <md-item-template>
-          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
-        </md-item-template>
-        <!-- <md-not-found>
-          No matches found for "{{ctrl.searchText}}".
-        </md-not-found> -->
-      </md-autocomplete>
-    </div>
+
 
 <div id='selectors'>
 <div id='checkboxes'>
@@ -45,7 +23,6 @@
 <md-checkbox ng-click="includeStore('men')" class="md-primary"> Men </md-checkbox>
 <md-checkbox ng-click="includeStore('kids')" class="md-primary"> Baby & Kids </md-checkbox>
 <md-checkbox ng-click="includeStore('home')" class="md-primary"> Home </md-checkbox>
-</div>
 </div>
 
   <div id='buttons'>
@@ -66,10 +43,37 @@
   </div>
 </div>
 
-    <div id='sliders' flex="10" layout layout-align="center center">
-      <span class="md-body-1">Days Old:</span>
-    <md-slider flex class="md-primary" md-discrete min="0" max="5" step="1" ng-model="daysOld" aria-label="rating"></md-slider>
-  <div id = 'slidervalue'>{{daysOld}} </div>
+<div id='searchandslider'>
+<div id='search'>
+        <md-autocomplete
+          ctrl.simulateQuery=""
+          ng-disabled="ctrl.isDisabled"
+          md-no-cache="ctrl.noCache"
+          md-selected-item="ctrl.selectedItem"
+          md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+          md-search-text="ctrl.searchText"
+          md-selected-item-change="ctrl.selectedItemChange(item)"
+          md-items="item in ctrl.querySearch(ctrl.searchText)"
+          md-item-text="item.display"
+          md-min-length="0"
+          placeholder="Search by keyword."
+          ng-init="ctrl.searchText=''">
+          <span md-highlight-text="searchText">{{item.display}}</span>
+        <md-item-template>
+          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+        </md-item-template>
+        <!-- <md-not-found>
+          No matches found for "{{ctrl.searchText}}".
+        </md-not-found> -->
+      </md-autocomplete>
+    </div>
+    <div id='sliderholder'>
+      <div id='sliders' flex="10" layout layout-align="center center">
+        <span class="md-body-1">Days Old:</span>
+      <md-slider flex class="md-primary" md-discrete min="0" max="5" step="1" ng-model="daysOld" aria-label="rating"></md-slider>
+    <div id = 'slidervalue'>{{daysOld}} </div>
+    </div>
+    </div>
   </div>
 
   <md-button class="md-raised md-primary md-hue-2" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
@@ -79,6 +83,8 @@
   <md-button class="md-raised md-primary md-hue-2" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
       Next
   </md-button>
+
+</div>
 
 
 <div id='container'>
