@@ -1,4 +1,4 @@
-var main = angular.module('MainCtrl', ['ngAnimate', 'ngMaterial', 'ui.bootstrap']);
+var main = angular.module('MainCtrl', ['ngAnimate', 'ngMaterial']);
 
 
 main.filter('startFrom', function() {
