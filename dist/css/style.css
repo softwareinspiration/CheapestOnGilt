@@ -1,15 +1,12 @@
-body {
-  background: #efefef;
-}
 #title {
-  font-family: 'Alegreya', sans-serif;
-  font-weight: 700;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
   font-size: 46px;
-  color: orange;
+  color: #0b032d;
   margin-left: 8px;
 }
 #options {
-  width: 50%;
+  width: 600px;
 }
 #search {
   width: 20%;
@@ -30,6 +27,10 @@ body {
 .item {
   height: 10%;
   width: 9.6%;
+}
+md-content {
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .image {
   width: 100%;

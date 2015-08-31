@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Cheapest on Gilt</title>
+<title>Cheapest on Gilt.com</title>
 
-<link rel="stylesheet" href="dist/css/style.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
-<link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Alegreya:700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Lato:900' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="dist/css/style.min.css">
 
 </head>
 <body ng-app="giltApp" ng-controller="mainController">
@@ -82,14 +83,12 @@
   <md-button class="md-raised md-primary md-hue-2" ng-disabled="currentPage >= data.length/pageSize - 1" ng-click="currentPage=currentPage+1">
       Next
   </md-button>
-
 </div>
-
 
 <div id='container'>
 
 <div ng-repeat="item in data | orderBy:sortType:sortReverse | filter:storeFilter | filter:ctrl.searchText | filter:daysOldFilter
-| startFrom:currentPage*pageSize | limitTo:pageSize" class='item animate-repeat' ">
+| startFrom:currentPage*pageSize | limitTo:pageSize" class='item animate-repeat'>
 
 <md-card>
 <md-content>
@@ -114,6 +113,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script>
+<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js" type="text/javascript"></script>
 <script src="dist/js/app.min.js"></script>
 
 </body>
